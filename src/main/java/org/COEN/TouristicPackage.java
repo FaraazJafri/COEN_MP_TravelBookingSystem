@@ -3,6 +3,8 @@ package org.COEN;
 import java.util.List;
 
 public class TouristicPackage {
+    private static int PackageIdIncrementer = 1;
+    private int packageId;
     private String destinationCity;
     private String destinationCountry;
     private int numberOfDays;
@@ -12,6 +14,7 @@ public class TouristicPackage {
     private List<String> activitiesIncluded;
 
     public TouristicPackage(String destinationCity, String destinationCountry, int numberOfDays, int numberOfNights, String hotelName, double price, List<String> activitiesIncluded) {
+        this.packageId = this.PackageIdIncrementer;
         this.destinationCity = destinationCity;
         this.destinationCountry = destinationCountry;
         this.numberOfDays = numberOfDays;
@@ -19,8 +22,12 @@ public class TouristicPackage {
         this.hotelName = hotelName;
         this.price = price;
         this.activitiesIncluded = activitiesIncluded;
+        this.PackageIdIncrementer++;
     }
 
+    public int getPackageId(){
+        return this.packageId;
+    }
     public String getDestinationCity() {
         return destinationCity;
     }
@@ -75,5 +82,28 @@ public class TouristicPackage {
 
     public void setActivitiesIncluded(List<String> activitiesIncluded) {
         this.activitiesIncluded = activitiesIncluded;
+    }
+
+    @Override
+    public String toString(){
+
+        String activitiesIncludedString = "";
+
+        for (int i = 0; i < activitiesIncluded.size(); i++) {
+           if(i != activitiesIncluded.size()-1){
+               activitiesIncludedString += activitiesIncluded.get(i) + ", ";
+           }else{
+               activitiesIncludedString += activitiesIncluded.get(i);
+           }
+        }
+
+        return "Package Id: " + getPackageId() + "  ||  " +
+                "Destination City: "+getDestinationCity()+ "  ||  " +
+                "Destination Country: " +getDestinationCountry() + "  ||  " +
+                "Number Of Days: " + getNumberOfDays() + "  ||  " +
+                "Number Of Nights: "+ getNumberOfNights() + "  ||  " +
+                "Hotel Name: " + getHotelName() + "  ||  " +
+                "Price: " + getPrice()+ "  ||  "+
+                "Activities Included: " + activitiesIncludedString;
     }
 }

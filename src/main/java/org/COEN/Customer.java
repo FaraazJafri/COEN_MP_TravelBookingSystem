@@ -1,16 +1,26 @@
 package org.COEN;
 
 public class Customer {
+
+    private static int CustomerIdIncrementer = 1;
+
+    private int customerId;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
     private String email;
 
     public Customer(String name, String lastName, String dateOfBirth, String email) {
+        this.customerId = this.CustomerIdIncrementer;
         this.firstName = name;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
+        this.CustomerIdIncrementer++;
+    }
+
+    public int getCustomerId() {
+        return this.customerId;
     }
 
     public String getFirstName() {
@@ -43,6 +53,15 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer Id: " + getCustomerId() + "  ||  " +
+                "First Name: " + getFirstName() + "  ||  " +
+                "Last Name: " + getLastName() + "  ||  " +
+                "Date Of Birth: " + getDateOfBirth() + "  ||  " +
+                "Email Id: " + getEmail() + "  ||  ";
     }
 }
 
