@@ -89,12 +89,16 @@ public class TouristicPackage {
 
         String activitiesIncludedString = "";
 
-        for (int i = 0; i < activitiesIncluded.size(); i++) {
-           if(i != activitiesIncluded.size()-1){
-               activitiesIncludedString += activitiesIncluded.get(i) + ", ";
-           }else{
-               activitiesIncludedString += activitiesIncluded.get(i);
-           }
+        if(activitiesIncluded.size() != 0) {
+            for (int i = 0; i < activitiesIncluded.size(); i++) {
+                if (i != activitiesIncluded.size() - 1) {
+                    activitiesIncludedString += activitiesIncluded.get(i) + ", ";
+                } else {
+                    activitiesIncludedString += activitiesIncluded.get(i);
+                }
+            }
+        }else{
+            activitiesIncludedString = "None";
         }
 
         return "Package Id: " + getPackageId() + "  ||  " +

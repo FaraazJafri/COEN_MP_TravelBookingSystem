@@ -61,7 +61,7 @@ public class Customer {
                 "First Name: " + getFirstName() + "  ||  " +
                 "Last Name: " + getLastName() + "  ||  " +
                 "Date Of Birth: " + getDateOfBirth() + "  ||  " +
-                "Email Id: " + getEmail() + "  ||  ";
+                "Email Id: " + getEmail();
     }
 }
 
