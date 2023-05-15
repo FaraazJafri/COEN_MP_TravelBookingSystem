@@ -25,9 +25,14 @@ public class TouristicPackage {
         this.PackageIdIncrementer++;
     }
 
-    public int getPackageId(){
+    public static void resetCounter() {
+        PackageIdIncrementer = 1;
+    }
+
+    public int getPackageId() {
         return this.packageId;
     }
+
     public String getDestinationCity() {
         return destinationCity;
     }
@@ -85,29 +90,29 @@ public class TouristicPackage {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
-        String activitiesIncludedString = "";
+        StringBuilder activitiesIncludedString = new StringBuilder();
 
-        if(activitiesIncluded.size() != 0) {
+        if (activitiesIncluded != null && activitiesIncluded.size() != 0) {
             for (int i = 0; i < activitiesIncluded.size(); i++) {
                 if (i != activitiesIncluded.size() - 1) {
-                    activitiesIncludedString += activitiesIncluded.get(i) + ", ";
+                    activitiesIncludedString.append(activitiesIncluded.get(i)).append(", ");
                 } else {
-                    activitiesIncludedString += activitiesIncluded.get(i);
+                    activitiesIncludedString.append(activitiesIncluded.get(i));
                 }
             }
-        }else{
-            activitiesIncludedString = "None";
+        } else {
+            activitiesIncludedString = new StringBuilder("None");
         }
 
         return "Package Id: " + getPackageId() + "  ||  " +
-                "Destination City: "+getDestinationCity()+ "  ||  " +
-                "Destination Country: " +getDestinationCountry() + "  ||  " +
+                "Destination City: " + getDestinationCity() + "  ||  " +
+                "Destination Country: " + getDestinationCountry() + "  ||  " +
                 "Number Of Days: " + getNumberOfDays() + "  ||  " +
-                "Number Of Nights: "+ getNumberOfNights() + "  ||  " +
+                "Number Of Nights: " + getNumberOfNights() + "  ||  " +
                 "Hotel Name: " + getHotelName() + "  ||  " +
-                "Price: " + getPrice()+ "  ||  "+
+                "Price: " + getPrice() + "  ||  " +
                 "Activities Included: " + activitiesIncludedString;
     }
 }

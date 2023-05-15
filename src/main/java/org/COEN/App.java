@@ -22,17 +22,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-
         System.out.println("------------------------Welcome to Travel Booking System-----------------------");
         App obj = new App();
 
         obj.mainMenu();
-
     }
 
     public void mainMenu() {
-
-
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Please select a option from below:");
@@ -89,7 +85,6 @@ public class App {
             System.out.println("Package Successfully Added!!!");
             System.out.println("-------------------------------------------------------------------------------------------------");
 
-
             mainMenu();
         } else if (option == 2) {
             createCustomer();
@@ -98,10 +93,15 @@ public class App {
 
             System.out.println("------------------------------------------Book Package-----------------------------------------");
 
+            if (packages.size() == 0) {
+                System.out.println("No Packages Available!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
             System.out.println("List of Packages are below, please select one:");
 
-            for (int i = 0; i < packages.size(); i++) {
-                System.out.println(packages.get(i));
+            for (TouristicPackage aPackage : packages) {
+                System.out.println(aPackage);
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -110,9 +110,9 @@ public class App {
 
             TouristicPackage packageSelected = null;
 
-            for (int i = 0; i < packages.size(); i++) {
-                if (packageSelectedId == packages.get(i).getPackageId()) {
-                    packageSelected = packages.get(i);
+            for (TouristicPackage aPackage : packages) {
+                if (packageSelectedId == aPackage.getPackageId()) {
+                    packageSelected = aPackage;
                 }
             }
 
@@ -130,10 +130,15 @@ public class App {
 
 
             if (op == 1) {
+                if (customers.size() == 0) {
+                    System.out.println("No Customers Available!!!");
+                    System.out.println("-------------------------------------------------------------------------------------------------");
+                    mainMenu();
+                }
                 System.out.println("List of Customers are below, please select one:");
 
-                for (int i = 0; i < customers.size(); i++) {
-                    System.out.println(customers.get(i));
+                for (Customer customer : customers) {
+                    System.out.println(customer);
                 }
 
                 System.out.println("-------------------------------------------------------------------------------------------------");
@@ -142,12 +147,11 @@ public class App {
 
                 Customer customerSelected = null;
 
-                for (int i = 0; i < customers.size(); i++) {
-                    if (customerSelectedId == customers.get(i).getCustomerId()) {
-                        customerSelected = customers.get(i);
+                for (Customer customer : customers) {
+                    if (customerSelectedId == customer.getCustomerId()) {
+                        customerSelected = customer;
                     }
                 }
-
 
                 System.out.println("You Selected this customer:");
                 System.out.println(customerSelected);
@@ -201,14 +205,13 @@ public class App {
         int option = sc.nextInt();
         sc.nextLine();
 
-
         if (option == 1) {
 
             System.out.println();
             System.out.println("List of Customers are below, please select one:");
 
-            for (int i = 0; i < customers.size(); i++) {
-                System.out.println(customers.get(i));
+            for (Customer customer : customers) {
+                System.out.println(customer);
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -217,12 +220,11 @@ public class App {
 
             Customer customerSelected = null;
 
-            for (int i = 0; i < customers.size(); i++) {
-                if (customerSelectedId == customers.get(i).getCustomerId()) {
-                    customerSelected = customers.get(i);
+            for (Customer customer : customers) {
+                if (customerSelectedId == customer.getCustomerId()) {
+                    customerSelected = customer;
                 }
             }
-
 
             System.out.println("You Selected this customer:");
             System.out.println(customerSelected);
@@ -230,10 +232,9 @@ public class App {
             System.out.println();
             System.out.println("Bookings for this customer are, please select the one you wish to modify: ");
 
-
-            for (int i = 0; i < bookings.size(); i++) {
-                if (customerSelectedId == bookings.get(i).getCustomer().getCustomerId()) {
-                    System.out.println(bookings.get(i));
+            for (Booking booking : bookings) {
+                if (customerSelectedId == booking.getCustomer().getCustomerId()) {
+                    System.out.println(booking);
                 }
             }
 
@@ -243,9 +244,9 @@ public class App {
 
             Booking bookingSelected = null;
 
-            for (int i = 0; i < bookings.size(); i++) {
-                if (bookingSelectedId == bookings.get(i).getBookingId()) {
-                    bookingSelected = bookings.get(i);
+            for (Booking booking : bookings) {
+                if (bookingSelectedId == booking.getBookingId()) {
+                    bookingSelected = booking;
                 }
             }
 
@@ -257,7 +258,9 @@ public class App {
             String departureDate = sc.nextLine();
 
             bookings.remove(bookingSelected);
-            bookingSelected.setDepartureDate(departureDate);
+            if (bookingSelected != null) {
+                bookingSelected.setDepartureDate(departureDate);
+            }
 
             bookings.add(bookingSelected);
 
@@ -268,8 +271,8 @@ public class App {
             System.out.println();
             System.out.println("List of Customers are below, please select one:");
 
-            for (int i = 0; i < customers.size(); i++) {
-                System.out.println(customers.get(i));
+            for (Customer customer : customers) {
+                System.out.println(customer);
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -278,12 +281,11 @@ public class App {
 
             Customer customerSelected = null;
 
-            for (int i = 0; i < customers.size(); i++) {
-                if (customerSelectedId == customers.get(i).getCustomerId()) {
-                    customerSelected = customers.get(i);
+            for (Customer customer : customers) {
+                if (customerSelectedId == customer.getCustomerId()) {
+                    customerSelected = customer;
                 }
             }
-
 
             System.out.println("You Selected this customer:");
             System.out.println(customerSelected);
@@ -291,10 +293,9 @@ public class App {
             System.out.println();
             System.out.println("Bookings for this customer are, please select the one you wish to delete: ");
 
-
-            for (int i = 0; i < bookings.size(); i++) {
-                if (customerSelectedId == bookings.get(i).getCustomer().getCustomerId()) {
-                    System.out.println(bookings.get(i));
+            for (Booking booking : bookings) {
+                if (customerSelectedId == booking.getCustomer().getCustomerId()) {
+                    System.out.println(booking);
                 }
             }
 
@@ -304,9 +305,9 @@ public class App {
 
             Booking bookingSelected = null;
 
-            for (int i = 0; i < bookings.size(); i++) {
-                if (bookingSelectedId == bookings.get(i).getBookingId()) {
-                    bookingSelected = bookings.get(i);
+            for (Booking booking : bookings) {
+                if (bookingSelectedId == booking.getBookingId()) {
+                    bookingSelected = booking;
                 }
             }
 
@@ -322,11 +323,9 @@ public class App {
         } else if (option == 3) {
             mainMenu();
         }
-
     }
 
     public Customer createCustomer() {
-
         Scanner sc = new Scanner(System.in);
 
         System.out.println("--------------------------------Create Customer-------------------------------------");
@@ -367,20 +366,29 @@ public class App {
         sc.nextLine();
 
         if (option == 1) {
-            for (int i = 0; i < packages.size(); i++) {
-                System.out.println(packages.get(i));
+            if (packages.isEmpty()) {
+                System.out.println("No Packages Available");
+            }
+            for (TouristicPackage aPackage : packages) {
+                System.out.println(aPackage);
             }
             System.out.println("-------------------------------------------------------------------------------------------------");
             listMenu();
         } else if (option == 2) {
-            for (int i = 0; i < customers.size(); i++) {
-                System.out.println(customers.get(i));
+            if (customers.isEmpty()) {
+                System.out.println("No Customers Available");
+            }
+            for (Customer customer : customers) {
+                System.out.println(customer);
             }
             System.out.println("-------------------------------------------------------------------------------------------------");
             listMenu();
         } else if (option == 3) {
-            for (int i = 0; i < bookings.size(); i++) {
-                System.out.println(bookings.get(i));
+            if (bookings.isEmpty()) {
+                System.out.println("No Bookings Available");
+            }
+            for (Booking booking : bookings) {
+                System.out.println(booking);
             }
             System.out.println("-------------------------------------------------------------------------------------------------");
             listMenu();
@@ -401,41 +409,38 @@ public class App {
         System.out.println("2. Report of particular package");
         System.out.println("3. Return to Main Menu");
 
-
         int op = sc.nextInt();
         sc.nextLine();
 
-
-        if(op == 1){
+        if (op == 1) {
             System.out.println("Below is the information of all packages:");
             System.out.println();
             System.out.println("-------------------------------------------------------------------------------------------------");
 
-            for (int i = 0; i < packages.size(); i++) {
+            for (TouristicPackage aPackage : packages) {
                 int numberOfBookings = 0;
                 double revenue = 0;
-                for (int j = 0; j < bookings.size(); j++) {
-                    if(packages.get(i).getPackageId() == bookings.get(j).getTouristPackage().getPackageId()){
+                for (Booking booking : bookings) {
+                    if (aPackage.getPackageId() == booking.getTouristPackage().getPackageId()) {
                         numberOfBookings++;
                     }
                 }
 
-                revenue = packages.get(i).getPrice() * numberOfBookings;
+                revenue = aPackage.getPrice() * numberOfBookings;
 
                 System.out.println("-------------------------------------------------------------------------------------------------");
                 System.out.println("For this package:");
-                System.out.println(packages.get(i));
+                System.out.println(aPackage);
                 System.out.println("The number of bookings are: " + numberOfBookings + " and the total revenue is: " + revenue);
                 System.out.println("-------------------------------------------------------------------------------------------------");
                 System.out.println();
-
             }
             bookingReports();
-        }else if (op == 2) {
+        } else if (op == 2) {
             System.out.println("List of Packages are below, please select one:");
 
-            for (int i = 0; i < packages.size(); i++) {
-                System.out.println(packages.get(i));
+            for (TouristicPackage aPackage : packages) {
+                System.out.println(aPackage);
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -444,22 +449,24 @@ public class App {
 
             TouristicPackage packageSelected = null;
 
-            for (int i = 0; i < packages.size(); i++) {
-                if (packageSelectedId == packages.get(i).getPackageId()) {
-                    packageSelected = packages.get(i);
+            for (TouristicPackage aPackage : packages) {
+                if (packageSelectedId == aPackage.getPackageId()) {
+                    packageSelected = aPackage;
                 }
             }
 
             double revenue = 0;
             int numberOfBookings = 0;
 
-            for (int i = 0; i < bookings.size(); i++) {
-                if (packageSelected.getPackageId() == bookings.get(i).getTouristPackage().getPackageId()) {
+            for (Booking booking : bookings) {
+                if (packageSelected != null && packageSelected.getPackageId() == booking.getTouristPackage().getPackageId()) {
                     numberOfBookings++;
                 }
             }
 
-            revenue = packageSelected.getPrice() * numberOfBookings;
+            if (packageSelected != null) {
+                revenue = packageSelected.getPrice() * numberOfBookings;
+            }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
             System.out.println("For this package:");
@@ -468,10 +475,9 @@ public class App {
             System.out.println("-------------------------------------------------------------------------------------------------");
             System.out.println();
             bookingReports();
-        }else if(op == 3){
+        } else if (op == 3) {
             System.out.println("-------------------------------------------------------------------------------------------------");
             mainMenu();
         }
-
     }
 }

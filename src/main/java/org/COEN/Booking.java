@@ -2,15 +2,10 @@ package org.COEN;
 
 public class Booking {
 
-
     private static int BookingIdIncrementer = 1;
-
     private int bookingId;
-
     private Customer customer;
-
     private TouristicPackage touristPackage;
-
     private String departureDate;
 
     public int getBookingId() {
@@ -41,7 +36,7 @@ public class Booking {
         this.departureDate = departureDate;
     }
 
-    public Booking(Customer customer, TouristicPackage touristicPackage, String departureDate){
+    public Booking(Customer customer, TouristicPackage touristicPackage, String departureDate) {
         this.bookingId = this.BookingIdIncrementer;
         this.BookingIdIncrementer++;
         this.customer = customer;
@@ -49,11 +44,15 @@ public class Booking {
         this.departureDate = departureDate;
     }
 
+    public static void resetCounter() {
+        BookingIdIncrementer = 1;
+    }
+
     @Override
-    public String toString(){
-        return "Booking Id: " +getBookingId()+ "  ||||  "+
-                "Customer: " +getCustomer() + "  ||||  " +
+    public String toString() {
+        return "Booking Id: " + getBookingId() + "  ||||  " +
+                "Customer: " + getCustomer() + "  ||||  " +
                 "Tourist Package: " + getTouristPackage() + "  ||||  " +
-                "Departure Date: " +getDepartureDate();
+                "Departure Date: " + getDepartureDate();
     }
 }

@@ -2,8 +2,7 @@ package org.COEN;
 
 public class Customer {
 
-    private static int CustomerIdIncrementer = 1;
-
+    private static int customerIdIncrementer = 1;
     private int customerId;
     private String firstName;
     private String lastName;
@@ -11,13 +10,18 @@ public class Customer {
     private String email;
 
     public Customer(String name, String lastName, String dateOfBirth, String email) {
-        this.customerId = this.CustomerIdIncrementer;
+        this.customerId = this.customerIdIncrementer;
         this.firstName = name;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.CustomerIdIncrementer++;
+        this.customerIdIncrementer++;
     }
+
+    public static void resetCounter() {
+        customerIdIncrementer = 1;
+    }
+
 
     public int getCustomerId() {
         return this.customerId;
