@@ -206,6 +206,11 @@ public class App {
         sc.nextLine();
 
         if (option == 1) {
+            if (customers.size() == 0) {
+                System.out.println("No Customers Available!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
 
             System.out.println();
             System.out.println("List of Customers are below, please select one:");
@@ -232,10 +237,17 @@ public class App {
             System.out.println();
             System.out.println("Bookings for this customer are, please select the one you wish to modify: ");
 
+            boolean bookingFound = false;
             for (Booking booking : bookings) {
                 if (customerSelectedId == booking.getCustomer().getCustomerId()) {
                     System.out.println(booking);
                 }
+            }
+
+            if (!bookingFound) {
+                System.out.println("No bookings found for this customer. Please try again with correct information!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
             }
 
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -268,6 +280,11 @@ public class App {
             System.out.println("-------------------------------------------------------------------------------------------------");
             modifyBooking();
         } else if (option == 2) {
+            if (customers.size() == 0) {
+                System.out.println("No Customers Available!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
             System.out.println();
             System.out.println("List of Customers are below, please select one:");
 
@@ -293,12 +310,19 @@ public class App {
             System.out.println();
             System.out.println("Bookings for this customer are, please select the one you wish to delete: ");
 
+            boolean bookingFound = false;
             for (Booking booking : bookings) {
                 if (customerSelectedId == booking.getCustomer().getCustomerId()) {
+                    bookingFound = true;
                     System.out.println(booking);
                 }
             }
 
+            if (!bookingFound) {
+                System.out.println("No bookings found for this customer. Please try again with correct information!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
             System.out.println("-------------------------------------------------------------------------------------------------");
             int bookingSelectedId = sc.nextInt();
             sc.nextLine();
@@ -413,6 +437,11 @@ public class App {
         sc.nextLine();
 
         if (op == 1) {
+            if (packages.isEmpty()) {
+                System.out.println("No Packages Available");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
             System.out.println("Below is the information of all packages:");
             System.out.println();
             System.out.println("-------------------------------------------------------------------------------------------------");
@@ -437,6 +466,11 @@ public class App {
             }
             bookingReports();
         } else if (op == 2) {
+            if (packages.isEmpty()) {
+                System.out.println("No Packages Available");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
             System.out.println("List of Packages are below, please select one:");
 
             for (TouristicPackage aPackage : packages) {
