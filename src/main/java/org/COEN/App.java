@@ -45,141 +45,13 @@ public class App {
         sc.nextLine();
 
         if (option == 1) {
-            System.out.println("-----------------------------Create Package---------------------------------");
-
-            System.out.println("Please enter destination city:");
-            String destionationCity = sc.nextLine();
-
-            System.out.println("Please enter destination country:");
-            String destinationCountry = sc.nextLine();
-
-            System.out.println("Please enter number of days:");
-            int noOfDays = sc.nextInt();
-
-            System.out.println("Please enter number of nights");
-            int noOfNights = sc.nextInt();
-            sc.nextLine();
-
-            System.out.println("Please enter hotel name:");
-            String hotelName = sc.nextLine();
-
-            System.out.println("Please enter the price of the package:");
-            int price = sc.nextInt();
-
-            System.out.println("Please enter the number of activities included:");
-            int activitiesNumber = sc.nextInt();
-            sc.nextLine();
-
-            List<String> activitesIncluded = new ArrayList<>();
-
-            for (int i = 0; i < activitiesNumber; i++) {
-                System.out.println("Enter " + (i + 1) + " activity:");
-                String activity = sc.nextLine();
-                activitesIncluded.add(activity);
-            }
-
-            TouristicPackage newPackage = new TouristicPackage(destionationCity, destinationCountry, noOfDays, noOfNights, hotelName, price, activitesIncluded);
-
-            packages.add(newPackage);
-
-            System.out.println("Package Successfully Added!!!");
-            System.out.println("-------------------------------------------------------------------------------------------------");
-
+            createPackage();
             mainMenu();
         } else if (option == 2) {
             createCustomer();
             mainMenu();
         } else if (option == 3) {
-
-            System.out.println("------------------------------------------Book Package-----------------------------------------");
-
-            if (packages.size() == 0) {
-                System.out.println("No Packages Available!!!");
-                System.out.println("-------------------------------------------------------------------------------------------------");
-                mainMenu();
-            }
-            System.out.println("List of Packages are below, please select one:");
-
-            for (TouristicPackage aPackage : packages) {
-                System.out.println(aPackage);
-            }
-
-            System.out.println("-------------------------------------------------------------------------------------------------");
-            int packageSelectedId = sc.nextInt();
-            sc.nextLine();
-
-            TouristicPackage packageSelected = null;
-
-            for (TouristicPackage aPackage : packages) {
-                if (packageSelectedId == aPackage.getPackageId()) {
-                    packageSelected = aPackage;
-                }
-            }
-
-            System.out.println("You Selected this package:");
-            System.out.println(packageSelected);
-            System.out.println("-------------------------------------------------------------------------------------------------");
-
-            System.out.println();
-            System.out.println("Please select one option below:");
-            System.out.println("1. Existing Customer");
-            System.out.println("2. New Customer");
-
-            int op = sc.nextInt();
-            sc.nextLine();
-
-
-            if (op == 1) {
-                if (customers.size() == 0) {
-                    System.out.println("No Customers Available!!!");
-                    System.out.println("-------------------------------------------------------------------------------------------------");
-                    mainMenu();
-                }
-                System.out.println("List of Customers are below, please select one:");
-
-                for (Customer customer : customers) {
-                    System.out.println(customer);
-                }
-
-                System.out.println("-------------------------------------------------------------------------------------------------");
-                int customerSelectedId = sc.nextInt();
-                sc.nextLine();
-
-                Customer customerSelected = null;
-
-                for (Customer customer : customers) {
-                    if (customerSelectedId == customer.getCustomerId()) {
-                        customerSelected = customer;
-                    }
-                }
-
-                System.out.println("You Selected this customer:");
-                System.out.println(customerSelected);
-                System.out.println("-------------------------------------------------------------------------------------------------");
-
-                System.out.println("Please enter the departure date (DD/MM/YYYY):");
-                String departureDate = sc.nextLine();
-
-                Booking newBooking = new Booking(customerSelected, packageSelected, departureDate);
-
-                bookings.add(newBooking);
-
-                System.out.println("Booking Added Successfully!!!");
-                System.out.println("-------------------------------------------------------------------------------------------------");
-                mainMenu();
-            } else if (op == 2) {
-                Customer newCustomer = createCustomer();
-                System.out.println("Please enter the departure date (DD/MM/YYYY):");
-                String departureDate = sc.nextLine();
-
-                Booking newBooking = new Booking(newCustomer, packageSelected, departureDate);
-
-                bookings.add(newBooking);
-
-                System.out.println("Booking Added Successfully!!!");
-                System.out.println("-------------------------------------------------------------------------------------------------");
-                mainMenu();
-            }
+            bookPackage();
         } else if (option == 4) {
             modifyBooking();
         } else if (option == 5) {
@@ -510,6 +382,145 @@ public class App {
             System.out.println();
             bookingReports();
         } else if (op == 3) {
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            mainMenu();
+        }
+    }
+
+    public void createPackage(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------Create Package---------------------------------");
+
+
+        System.out.println("Please enter destination city:");
+        String destionationCity = sc.nextLine();
+
+        System.out.println("Please enter destination country:");
+        String destinationCountry = sc.nextLine();
+
+        System.out.println("Please enter number of days:");
+        int noOfDays = sc.nextInt();
+
+        System.out.println("Please enter number of nights");
+        int noOfNights = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Please enter hotel name:");
+        String hotelName = sc.nextLine();
+
+        System.out.println("Please enter the price of the package:");
+        int price = sc.nextInt();
+
+        System.out.println("Please enter the number of activities included:");
+        int activitiesNumber = sc.nextInt();
+        sc.nextLine();
+
+        List<String> activitesIncluded = new ArrayList<>();
+
+        for (int i = 0; i < activitiesNumber; i++) {
+            System.out.println("Enter " + (i + 1) + " activity:");
+            String activity = sc.nextLine();
+            activitesIncluded.add(activity);
+        }
+
+        TouristicPackage newPackage = new TouristicPackage(destionationCity, destinationCountry, noOfDays, noOfNights, hotelName, price, activitesIncluded);
+
+        packages.add(newPackage);
+
+        System.out.println("Package Successfully Added!!!");
+        System.out.println("-------------------------------------------------------------------------------------------------");
+
+    }
+
+    public void bookPackage(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("------------------------------------------Book Package-----------------------------------------");
+
+        if (packages.size() == 0) {
+            System.out.println("No Packages Available!!!");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            mainMenu();
+        }
+        System.out.println("List of Packages are below, please select one:");
+
+        for (TouristicPackage aPackage : packages) {
+            System.out.println(aPackage);
+        }
+
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        int packageSelectedId = sc.nextInt();
+        sc.nextLine();
+
+        TouristicPackage packageSelected = null;
+
+        for (TouristicPackage aPackage : packages) {
+            if (packageSelectedId == aPackage.getPackageId()) {
+                packageSelected = aPackage;
+            }
+        }
+
+        System.out.println("You Selected this package:");
+        System.out.println(packageSelected);
+        System.out.println("-------------------------------------------------------------------------------------------------");
+
+        System.out.println();
+        System.out.println("Please select one option below:");
+        System.out.println("1. Existing Customer");
+        System.out.println("2. New Customer");
+
+        int op = sc.nextInt();
+        sc.nextLine();
+
+
+        if (op == 1) {
+            if (customers.size() == 0) {
+                System.out.println("No Customers Available!!!");
+                System.out.println("-------------------------------------------------------------------------------------------------");
+                mainMenu();
+            }
+            System.out.println("List of Customers are below, please select one:");
+
+            for (Customer customer : customers) {
+                System.out.println(customer);
+            }
+
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            int customerSelectedId = sc.nextInt();
+            sc.nextLine();
+
+            Customer customerSelected = null;
+
+            for (Customer customer : customers) {
+                if (customerSelectedId == customer.getCustomerId()) {
+                    customerSelected = customer;
+                }
+            }
+
+            System.out.println("You Selected this customer:");
+            System.out.println(customerSelected);
+            System.out.println("-------------------------------------------------------------------------------------------------");
+
+            System.out.println("Please enter the departure date (DD/MM/YYYY):");
+            String departureDate = sc.nextLine();
+
+            Booking newBooking = new Booking(customerSelected, packageSelected, departureDate);
+
+            bookings.add(newBooking);
+
+            System.out.println("Booking Added Successfully!!!");
+            System.out.println("-------------------------------------------------------------------------------------------------");
+            mainMenu();
+        } else if (op == 2) {
+            Customer newCustomer = createCustomer();
+            System.out.println("Please enter the departure date (DD/MM/YYYY):");
+            String departureDate = sc.nextLine();
+
+            Booking newBooking = new Booking(newCustomer, packageSelected, departureDate);
+
+            bookings.add(newBooking);
+
+            System.out.println("Booking Added Successfully!!!");
             System.out.println("-------------------------------------------------------------------------------------------------");
             mainMenu();
         }
