@@ -1,8 +1,8 @@
+package org.COEN;
+
 /**
  * Represents a booking for a touristic package made by a customer.
  */
-package org.COEN;
-
 public class Booking {
     private static int BookingIdIncrementer = 1;
     private int bookingId;

@@ -1,8 +1,8 @@
+package org.COEN;
+
 /**
  * Represents a customer.
  */
-package org.COEN;
-
 public class Customer {
     private static int customerIdIncrementer = 1;
     private int customerId;

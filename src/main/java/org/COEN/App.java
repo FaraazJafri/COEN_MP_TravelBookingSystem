@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Hello world!
+ * Console based application to book touristic packages.
  */
 public class App {
 

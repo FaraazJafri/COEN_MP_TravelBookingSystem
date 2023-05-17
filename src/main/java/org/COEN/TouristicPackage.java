@@ -1,10 +1,10 @@
-/**
- * Represents a touristic package.
- */
 package org.COEN;
 
 import java.util.List;
 
+/**
+ * Represents a touristic package.
+ */
 public class TouristicPackage {
     private static int PackageIdIncrementer = 1;
     private int packageId;
