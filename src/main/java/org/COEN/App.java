@@ -112,6 +112,7 @@ public class App {
             boolean bookingFound = false;
             for (Booking booking : bookings) {
                 if (customerSelectedId == booking.getCustomer().getCustomerId()) {
+                    bookingFound = true;
                     System.out.println(booking);
                 }
             }
@@ -387,7 +388,7 @@ public class App {
         }
     }
 
-    public void createPackage(){
+    public void createPackage() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------Create Package---------------------------------");
@@ -433,7 +434,7 @@ public class App {
 
     }
 
-    public void bookPackage(){
+    public void bookPackage() {
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------Book Package-----------------------------------------");
 
